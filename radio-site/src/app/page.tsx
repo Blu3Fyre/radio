@@ -6,6 +6,11 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface SpotifyTrack {
   id: string;
+  item: {
+    name: string;
+    artists: { name: string }[];
+    album: { images: { url: string }[] };
+  }
   name: string;
   artists: { name: string }[];
   album: { images: { url: string }[] };
@@ -34,7 +39,7 @@ export default function Home() {
 
   return (
     <>
-      <h1>Declan's Radio</h1>
+      <h1>Radio</h1>
 
       {/* Now Playing */
         data.nowPlaying ? (
@@ -74,7 +79,7 @@ export default function Home() {
             <ul>
               {data.artists.items.map((artist) => (
                 <li key={artist.id}>
-                  <img src={artist.images.at(-1).url} />
+                  <img src={artist?.images?.at(-1)?.url} />
                   <p>{artist.name}</p>
                 </li>
               ))}

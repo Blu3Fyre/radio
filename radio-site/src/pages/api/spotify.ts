@@ -1,7 +1,7 @@
 import { Buffer } from "buffer";
-import { access } from "fs";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const clientId = process.env.SPOTIFY_CLIENT_ID;
     const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
     const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN;
@@ -14,8 +14,9 @@ export default async function handler(req, res) {
         },
         body: new URLSearchParams({
             grant_type: "refresh_token",
-            refresh_token: refreshToken,
-        }),
+            refresh_token: refreshToken ?? "",
+        }).toString(),
+
     });
 
     const tokenData = await tokenResponse.json();
