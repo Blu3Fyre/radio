@@ -51,8 +51,8 @@ export default function Home() {
           />
         ) : (
           <>
-            <h2 className="text-4xl font-semibold text-center">Nothing is Playing</h2>
-            <p className="text-lg font-semibold text-center">All is quiet...</p>
+            <h2 className="text-4xl font-semibold text-center text-white">Nothing is Playing</h2>
+            <p className="text-lg font-semibold text-center text-white">All is quiet...</p>
           </>
         )}
       </section>
